@@ -1,30 +1,48 @@
 const socket = io();
 
-const statusSpan = document.getElementById("connection-status");
+const statusElement = document.getElementById("connection-status");
 const chatBox = document.getElementById("chat-box");
-const connStatusConcept = document.getElementById("conn-status-concept");
+const messageInput = document.getElementById("message");
 
+// When the client connects to the server
 socket.on("connect", () => {
-  statusSpan.textContent = "Connected";
-  connStatusConcept.textContent = "Connected";
+    statusElement.textContent = "Connected";
 });
 
+// When the client disconnects from the server
 socket.on("disconnect", () => {
-  statusSpan.textContent = "Disconnected";
-  connStatusConcept.textContent = "Disconnected";
+    statusElement.textContent = "Disconnected";
 });
 
-socket.on("message", (msg) => {
-  let msgDiv = document.createElement("div");
-  msgDiv.textContent = `Server/Client: ${msg}`;
-  chatBox.appendChild(msgDiv);
-  chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+// Receive a message from the server
+socket.on("message", (message) => {
+    const messageElement = document.createElement("div");
+
+    messageElement.className = "message";
+    messageElement.textContent = message;
+
+    chatBox.appendChild(messageElement);
+
+    // Automatically scroll to the latest message
+    chatBox.scrollTop = chatBox.scrollHeight;
 });
 
+// Send a message to the server
 function sendMessage() {
-  const input = document.getElementById("message");
-  if (input.value.trim() !== "") {
-    socket.send(input.value);
-    input.value = "";
-  }
+    const message = messageInput.value.trim();
+
+    if (message === "") {
+        return;
+    }
+
+    socket.send(message);
+    messageInput.value = "";
+    messageInput.focus();
 }
+
+// Send message when Enter is pressed
+messageInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
