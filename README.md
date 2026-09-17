@@ -1,21 +1,32 @@
 # Client-Server Chat Web Application
 
-### Description
+## Description
 
-A simple chat web application built with Streamlit that demonstrates the basic client-server model.
+A simple Client-Server Chat Application developed using Python and Streamlit.
 
-### Features
+The project demonstrates the basic working of the client-server model, where a client sends a message to a server and the server processes and responds to the message.
 
-- Shows connection status.
-- Displays host, port, and protocol.
-- Provides a chat interface.
-- Demonstrates client-server communication.
-- Can be deployed directly using Streamlit Cloud.
+## Features
 
-### Setup Instructions
+- Client connection status
+- Client-server communication demonstration
+- Real-time chat-style interface
+- Server response to client messages
+- Displays networking concepts
+- Displays communication protocol
+- Simple and user-friendly interface
+- Can be deployed directly using Streamlit Cloud
 
-1. Clone the repository:
+## Technologies Used
 
-   ```bash
-   git clone <your-repository-url>
-   cd cn-pr
+- Python
+- Streamlit
+
+## Project Structure
+
+```text
+cn-pr/
+│
+├── README.md
+├── requirements.txt
+└── server.py
