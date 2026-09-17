@@ -2,24 +2,20 @@
 
 ### Description
 
-A simple real-time chat web application demonstrating the client-server model using Flask and Socket.IO.
+A simple chat web application built with Streamlit that demonstrates the basic client-server model.
 
 ### Features
 
 - Shows connection status.
-- Displays IP address (`localhost`), port (`5000`), and protocol used.
-- Supports real-time message exchange.
-- Allows multiple clients to communicate simultaneously.
-- Works on any device with a web browser on the same network.
+- Displays host, port, and protocol.
+- Provides a chat interface.
+- Demonstrates client-server communication.
+- Can be deployed directly using Streamlit Cloud.
 
 ### Setup Instructions
 
 1. Clone the repository:
 
-    ```bash
+   ```bash
    git clone <your-repository-url>
-   cd client-server-chat
-   python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-python server.py
+   cd cn-pr
