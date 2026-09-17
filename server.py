@@ -2,17 +2,36 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
+
+# Secret key used by Flask
+app.config["SECRET_KEY"] = "chat-secret-key"
+
+# Initialize Socket.IO
 socketio = SocketIO(app)
 
-@app.route('/')
+
+@app.route("/")
 def index():
-    return render_template('index.html')
+    """Display the chat application."""
+    return render_template("index.html")
 
-@socketio.on('message')
-def handleMessage(msg):
-    print(f'Message: {msg}')
-    send(msg, broadcast=True)
 
-if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000)
+@socketio.on("message")
+def handle_message(message):
+    """Receive and broadcast a message to all connected clients."""
+    print(f"Message received: {message}")
+
+    # Broadcast the message to all connected clients
+    send(message, broadcast=True)
+
+
+if __name__ == "__main__":
+    print("Client-Server Chat Server")
+    print("Server running at: http://localhost:5000")
+
+    socketio.run(
+        app,
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    )
